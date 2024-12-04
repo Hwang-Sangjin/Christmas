@@ -19,8 +19,8 @@ void main(){
 
     // Wind
    vec2 windOffset = vec2(
-        texture(uPerlinTexture, vec2(0.25, uTime * 0.01)).r - 0.5,
-        texture(uPerlinTexture, vec2(0.75, uTime * 0.01)).r - 0.5
+        texture(uPerlinTexture, vec2(0.25, uTime * aIndex * 0.03)).r - 0.5,
+        texture(uPerlinTexture, vec2(0.75, uTime * aIndex * 0.03)).r - 0.5
     );
     windOffset *= pow(30.0 -newPosition.y,2.0) *0.05;
     

@@ -8,7 +8,8 @@ uniform float uTime;
 
 float getElevation(vec2 position)
 {
-    vec2 warpedPosition = position;
+
+    vec2 warpedPosition = vec2(position.x,-3.0*position.y);
     warpedPosition += uTime *1.5;
     warpedPosition += simplexNoise2d(warpedPosition* uPositionFrequency * uWarpFrequency) * uWarpStrength;
 
@@ -34,7 +35,7 @@ void main(){
     float elevation = getElevation(csm_Position.xy);
     csm_Position.z += elevation;
 
-     positionA.z    += getElevation(positionA.xy);
+    positionA.z    += getElevation(positionA.xy);
     positionB.z   += getElevation(positionB.xy);
 
     // Compute normal

@@ -42,4 +42,5 @@ void main(){
     vec3 toB = normalize(positionB - csm_Position);
 
     csm_Normal = cross(toA, toB);
+    
 }

@@ -8,6 +8,7 @@ import {
 import Ground from "./Ground";
 import { useRef } from "react";
 import Frame from "./Frame";
+import Snow from "./Snow";
 
 export default function FiberContainer() {
   const cameraControlRef = useRef(null);
@@ -16,6 +17,7 @@ export default function FiberContainer() {
     <Canvas camera={{ position: [0, 10, 0], fov: 45 }} shadows>
       <Frame />
       <Ground />
+      <Snow />
       <Environment preset="sunset" backgroundBlurriness={0.1} />
       <directionalLight position={[6.25, 3, 4]} color="white" intensity={1.2} />
       <OrbitControls

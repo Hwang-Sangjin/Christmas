@@ -16,7 +16,7 @@ export default function FiberContainer() {
 
   return (
     <Canvas camera={{ position: [-40, 10, 20], fov: 35 }} shadows>
-      <fog attach="fog" args={["#fbfbfb", 20, 70]} />
+      <fog attach="fog" args={["#fbfbfb", 25, 75]} />
       <Frame />
       <Ground />
       <Snow />

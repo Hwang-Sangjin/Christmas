@@ -30,7 +30,7 @@ uniform sampler2D uPerlinTexture;
         height2 -=perlineValue2 * 0.22;
 
         float perlineValue3 = texture(uPerlinTexture, vec2(vUv.x*5.0 + uTime*0.004, 0.75)).r;
-        height3 -=perlineValue3 * 0.22;
+        height3 -=perlineValue3 * 0.23;
 
         if(vUv.y <=height1){
             strength1=1.0;

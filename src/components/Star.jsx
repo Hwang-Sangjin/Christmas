@@ -35,7 +35,7 @@ const Star = () => {
 
     for (let i = 0; i < particle_cnt; i++) {
       positionArray[i * 3] = (Math.random() - 0.5) * 150;
-      positionArray[i * 3 + 1] = Math.random() * 40 + 15;
+      positionArray[i * 3 + 1] = Math.random() * 30 + 22;
       positionArray[i * 3 + 2] = -49;
       progressArray[i] = Math.random();
 

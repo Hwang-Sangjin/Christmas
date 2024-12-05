@@ -25,10 +25,10 @@ const Ground = () => {
 
   const uniforms = useMemo(
     () => ({
-      uPositionFrequency: new THREE.Uniform(0.2),
-      uStrength: new THREE.Uniform(0.6),
-      uWarpFrequency: new THREE.Uniform(5),
-      uWarpStrength: new THREE.Uniform(0.5),
+      uPositionFrequency: new THREE.Uniform(0.22),
+      uStrength: new THREE.Uniform(0.5),
+      uWarpFrequency: new THREE.Uniform(3),
+      uWarpStrength: new THREE.Uniform(0.2),
       uTime: new THREE.Uniform(0),
       uColorWaterDeep: new THREE.Uniform(
         new THREE.Color(debugObject.colorWaterDeep)

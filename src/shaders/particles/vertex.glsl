@@ -13,7 +13,7 @@ varying float vAIndex;
 void main(){
     vec3 newPosition = position;
 
-    float strengthY = mod(newPosition.y + 30.0 - uTime*min(aIndex*5.0,4.0),30.0);
+    float strengthY = mod(newPosition.y + 30.0 - uTime*max(aIndex*5.0,3.0),30.0);
 
     newPosition.y =strengthY;
 

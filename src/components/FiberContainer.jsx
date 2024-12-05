@@ -10,6 +10,7 @@ import { useRef } from "react";
 import Frame from "./Frame";
 import Snow from "./Snow";
 import Moon from "./Moon";
+import Star from "./Star";
 
 export default function FiberContainer() {
   const cameraControlRef = useRef(null);
@@ -20,7 +21,7 @@ export default function FiberContainer() {
       <Frame />
       <Ground />
       <Snow />
-
+      <Star />
       <Environment preset="sunset" backgroundBlurriness={0.1} />
       <directionalLight position={[6.25, 3, 4]} color="white" intensity={1.2} />
       <OrbitControls

@@ -16,7 +16,7 @@ export default function FiberContainer() {
   const cameraControlRef = useRef(null);
 
   return (
-    <Canvas camera={{ position: [-40, 10, 20], fov: 35 }} shadows>
+    <Canvas camera={{ position: [-100, 10, 50], fov: 35 }} shadows>
       <fog attach="fog" args={["#fbfbfb", 25, 75]} />
       <Frame />
       <Ground />
@@ -25,7 +25,7 @@ export default function FiberContainer() {
       <Environment preset="sunset" backgroundBlurriness={0.1} />
       <directionalLight position={[6.25, 3, 4]} color="white" intensity={1.2} />
       <OrbitControls
-        target={[10, 2, -50]}
+        target={[-35, 2, -50]}
         ref={cameraControlRef}
         enablePan={true}
         minDistance={1}

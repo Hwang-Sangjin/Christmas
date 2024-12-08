@@ -25,7 +25,7 @@ void main(){
     windOffset *= pow(30.0 -newPosition.y,2.0) *0.05;
     
     newPosition.xz += windOffset;
-    newPosition.x = mod(newPosition.x,100.0)-50.0;
+    newPosition.x = mod(newPosition.x,200.0)-100.0;
 
     vec4 modelPosition = modelMatrix * vec4(newPosition,1.0);
 

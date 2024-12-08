@@ -130,7 +130,7 @@ const Ground = () => {
       position={[0, 0, 0]}
       rotation={[-Math.PI / 2, 0, 0]}
     >
-      <planeGeometry args={[100, 100, 2048, 2048]} />
+      <planeGeometry args={[200, 100, 2048, 2048]} />
       <CustomShaderMaterial
         ref={materialRef}
         baseMaterial={THREE.MeshStandardMaterial}

@@ -23,7 +23,7 @@ const Snow = () => {
     []
   );
   const [SnowGeometry, setSnowGeometry] = useState(new THREE.BufferGeometry());
-  const particle_cnt = 2000;
+  const particle_cnt = 3000;
 
   useEffect(() => {
     const temp = new THREE.BufferGeometry();
@@ -34,9 +34,9 @@ const Snow = () => {
     const IndexArray = new Float32Array(particle_cnt);
 
     for (let i = 0; i < particle_cnt; i++) {
-      positionArray[i * 3] = (Math.random() - 0.5) * 100;
+      positionArray[i * 3] = (Math.random() - 0.5) * 200;
       positionArray[i * 3 + 1] = Math.random() * 30;
-      positionArray[i * 3 + 2] = -Math.random() * 50;
+      positionArray[i * 3 + 2] = -(Math.random() - 0.2) * 60;
       progressArray[i] = Math.random();
 
       sizeArray[i] = Math.random();

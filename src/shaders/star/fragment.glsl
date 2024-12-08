@@ -10,7 +10,7 @@ void main()
 {
     vec3 starColor = vec3(0.6, 0.6, 0.0);
     float maskStrength = texture2D(uTexture,gl_PointCoord).r;
-    float strength = texture2D(uPerlinTexture,vec2(vUv.x + uTime*vAIndex*0.1, 1.0)).r;
+    float strength = texture2D(uPerlinTexture,vec2(vUv.x + uTime*0.1 + vAIndex, 1.0)).r;
     strength = pow(strength,2.0);
     maskStrength = maskStrength*strength*vAIndex*10.0;
 

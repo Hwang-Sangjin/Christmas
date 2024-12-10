@@ -19,8 +19,8 @@ export default function FiberContainer() {
   return (
     <>
       <Loader />
-      <Canvas camera={{ position: [-100, 10, 50], fov: 35 }} shadows>
-        <fog attach="fog" args={["#fbfbfb", 25, 75]} />
+      <Canvas camera={{ position: [-100, 20, 50], fov: 35 }} shadows>
+        <fog attach="fog" args={["#fbfbfb", 50, 100]} />
         <Suspense fallback={null}>
           <Frame />
           <Ground />
@@ -33,7 +33,7 @@ export default function FiberContainer() {
             intensity={1.2}
           />
           <OrbitControls
-            target={[-35, 2, -50]}
+            target={[-45, 0, -25]}
             ref={cameraControlRef}
             enablePan={true}
             minDistance={1}

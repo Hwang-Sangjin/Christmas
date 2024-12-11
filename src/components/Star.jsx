@@ -75,10 +75,6 @@ const Star = () => {
     starUniforms.uTime.value = clock.getElapsedTime();
   });
 
-  useEffect(() => {
-    console.log(starGeometry);
-  }, [starGeometry]);
-
   return (
     <points ref={meshRef} geometry={starGeometry}>
       <shaderMaterial

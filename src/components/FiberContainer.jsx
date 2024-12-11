@@ -20,12 +20,12 @@ export default function FiberContainer() {
     <>
       <Loader />
       <Canvas camera={{ position: [-100, 20, 50], fov: 35 }} shadows>
-        <fog attach="fog" args={["#fbfbfb", 50, 100]} />
         <Suspense fallback={null}>
           <Frame />
           <Ground />
           <Snow />
           <Star />
+          <Moon />
           <Environment preset="sunset" backgroundBlurriness={0.1} />
           <directionalLight
             position={[6.25, 3, 4]}
@@ -44,6 +44,7 @@ export default function FiberContainer() {
             // maxPolarAngle={Math.PI - Math.PI / 2}
           />
         </Suspense>
+        <fog attach="fog" args={["#fbfbfb", 60, 100]} />
       </Canvas>
     </>
   );

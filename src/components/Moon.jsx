@@ -9,6 +9,7 @@ const Moon = () => {
   const bakedTexture = useTexture("./Moon/moon_baked.jpg");
 
   bakedTexture.flipY = false;
+  bakedTexture.colorSpace = THREE.SRGBColorSpace;
   return (
     <mesh
       geometry={nodes.NurbsPath.geometry}

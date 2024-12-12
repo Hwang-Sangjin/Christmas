@@ -11,6 +11,7 @@ import Frame from "./Frame";
 import Snow from "./Snow";
 import Moon from "./Moon";
 import Star from "./Star";
+import Tree1 from "./Tree/Tree1";
 import { Loader } from "./Loader/Loader";
 
 export default function FiberContainer() {
@@ -26,6 +27,7 @@ export default function FiberContainer() {
           <Snow />
           <Star />
           <Moon />
+          <Tree1 />
           <Environment preset="sunset" backgroundBlurriness={0.1} />
           <directionalLight
             position={[6.25, 3, 4]}

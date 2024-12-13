@@ -5,14 +5,11 @@ import {
   useEnvironment,
   CameraControls,
 } from "@react-three/drei";
-import Ground from "./Ground";
+
 import { Suspense, useRef } from "react";
-import Frame from "./Frame";
-import Snow from "./Snow";
-import Moon from "./Moon";
-import Star from "./Star";
-import Tree1 from "./Tree/Tree1";
+
 import { Loader } from "./Loader/Loader";
+import Experience from "./Experience";
 
 export default function FiberContainer() {
   const cameraControlRef = useRef(null);
@@ -22,12 +19,7 @@ export default function FiberContainer() {
       <Loader />
       <Canvas camera={{ position: [-100, 20, 50], fov: 35 }} shadows>
         <Suspense fallback={null}>
-          <Frame />
-          <Ground />
-          <Snow />
-          <Star />
-          <Moon />
-          <Tree1 />
+          <Experience />
           <Environment preset="sunset" backgroundBlurriness={0.1} />
           <directionalLight
             position={[6.25, 3, 4]}

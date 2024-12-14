@@ -10,31 +10,28 @@ import { useEffect, useState } from "react";
 const Experience = () => {
   const autoGenerateTime = 10;
   const autoGenerateRow = 5;
+  const maxTrees = 30;
   const autoGenerateCnt = 5;
   const [curTime, setCurTime] = useState(0);
   const [autoGenerateArr, setAutoGenerateArr] = useState([]);
 
   useEffect(() => {
+    let treeIndex = 0;
     const timer = setInterval(() => {
-      const newIndex = Math.floor(Math.random() * autoGenerateCnt);
-      let temp = [...autoGenerateArr];
-      if (autoGenerateArr.length <= 10) {
-        temp.push(newIndex);
-      } else {
-        let temp = autoGenerateArr;
-        temp.shift();
-        temp.push(newIndex);
-      }
+      if (treeIndex < maxTrees) {
+        const newIndex = Math.floor(Math.random() * autoGenerateCnt);
 
-      setAutoGenerateArr(temp);
-    }, 10000);
+        setAutoGenerateArr((prev) => {
+          const updatedArr = [...prev, newIndex]; // Add the new tree
+
+          return updatedArr;
+        });
+        treeIndex++;
+      }
+    }, 4000); // Generate a tree every 2 seconds
 
     return () => clearInterval(timer);
-  });
-
-  useEffect(() => {
-    console.log(autoGenerateArr);
-  }, [autoGenerateArr]);
+  }, []);
 
   return (
     <>
@@ -43,8 +40,8 @@ const Experience = () => {
       <Snow />
       <Star />
       <Moon />
-      {autoGenerateArr.map((index, key) => {
-        return <Tree1 key={key} type={index} />;
+      {autoGenerateArr.map((index, id) => {
+        return <Tree1 key={id} type={index} />;
       })}
     </>
   );

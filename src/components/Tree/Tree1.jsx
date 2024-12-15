@@ -2,7 +2,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-const Tree1 = ({ type }) => {
+const Tree1 = ({ type, zPos }) => {
   const mesh = useRef();
   const { nodes, scene } = useGLTF("./Tree/tree1.glb");
 
@@ -44,28 +44,30 @@ const Tree1 = ({ type }) => {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(100, 0.3, 0);
+        mesh.current.position.set(100, 0.3, zPos);
       }
     }
   });
 
   return (
     <>
-      <group ref={mesh} position={[100, 0.3, 0]}>
-        {nodes.Scene.children[0].children.map((child) => {
-          return (
-            <mesh
-              key={child.name}
-              geometry={child.geometry}
-              rotation={[0, -Math.PI * 0.5, 0]}
-              scale={0.5}
-              dispose={null}
-            >
-              <meshBasicMaterial map={textures[type]} fog={true} />
-            </mesh>
-          );
-        })}
-      </group>
+      {type == 5 ? null : (
+        <group ref={mesh} position={[100, 0.3, zPos]}>
+          {nodes.Scene.children[0].children.map((child) => {
+            return (
+              <mesh
+                key={child.name}
+                geometry={child.geometry}
+                rotation={[0, -Math.PI * 0.5, 0]}
+                scale={0.5}
+                dispose={null}
+              >
+                <meshBasicMaterial map={textures[type]} fog={true} />
+              </mesh>
+            );
+          })}
+        </group>
+      )}
     </>
   );
 };

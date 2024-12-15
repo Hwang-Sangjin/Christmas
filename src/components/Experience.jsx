@@ -8,30 +8,20 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 
 const Experience = () => {
-  const maxTrees = 33;
-  const autoGenerateCnt = 6;
-  const [autoGenerateArr1, setAutoGenerateArr1] = useState([]);
-  const [autoGenerateArr2, setAutoGenerateArr2] = useState([]);
-  const [autoGenerateArr3, setAutoGenerateArr3] = useState([]);
+  const TreeCnt = 200;
+
+  const [treeArray, setTreeArray] = useState([]);
 
   useEffect(() => {
-    let treeIndex1 = 0;
-    let treeIndex2 = 0;
+    let tempArray = [];
 
-    const timer = setInterval(() => {
-      if (treeIndex1 < maxTrees) {
-        const newIndex = Math.floor(Math.random() * autoGenerateCnt);
+    for (let i = 0; i < TreeCnt; i++) {
+      const x = Math.floor(Math.random() * 200) - 100;
+      const z = Math.floor(Math.random() * 100) - 50;
+      tempArray.push([x, z]);
+    }
 
-        setAutoGenerateArr1((prev) => {
-          const updatedArr = [...prev, newIndex]; // Add the new tree
-
-          return updatedArr;
-        });
-        treeIndex1++;
-      }
-    }, 4000); // Generate a tree every 2 seconds
-
-    return () => clearInterval(timer);
+    setTreeArray(tempArray);
   }, []);
 
   return (
@@ -41,8 +31,8 @@ const Experience = () => {
       <Snow />
       <Star />
       <Moon />
-      {autoGenerateArr1.map((index, id) => {
-        return <Tree1 key={id} type={index} zPos={50} />;
+      {treeArray.map((instance, index) => {
+        return <Tree1 xPos={instance[0]} zPos={instance[1]} />;
       })}
     </>
   );

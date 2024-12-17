@@ -20,17 +20,7 @@ export function Stand({ xPos, zPos }) {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(100, 0, zPos + 20);
-      }
-      if (mesh.current.position.z < -48) {
-        mesh.current.position.set(
-          (mesh.current.position.x -= delta * 0.5),
-          0,
-          -48
-        );
-        if (mesh.current.position.x < -100) {
-          mesh.current.position.set(100, 0, zPos + 20);
-        }
+        mesh.current.position.set(0, 0, zPos - 50);
       }
     }
   });
@@ -68,6 +58,12 @@ export function Stand({ xPos, zPos }) {
         >
           <meshBasicMaterial map={bakedTexture} fog={true} />
         </mesh>
+        <pointLight
+          position={[0, 1, 0]}
+          color={"yellow"}
+          intensity={500}
+          distance={11}
+        />
       </group>
     </group>
   );

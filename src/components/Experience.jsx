@@ -7,6 +7,7 @@ import Ground from "./Ground";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import { Stand } from "./Stand/Stand";
+import Stone from "./Stone";
 
 const Experience = () => {
   const HEIGHT = 100;
@@ -59,6 +60,55 @@ const Experience = () => {
       town[mainStreetValue + 6][j + 1] = 2;
     }
 
+    const townStreetType = Math.floor(Math.random() * 3);
+
+    const upStreetValue = Math.floor(Math.random() * 5) + 15;
+    const downStreetValue = Math.floor(Math.random() * 5) + 15;
+
+    if (townStreetType === 0) {
+      for (
+        let i = mainStreetValue - upStreetValue;
+        i <= mainStreetValue + 2;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 1;
+          j <= mainStreetStraightValue + 3;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
+    } else if (townStreetType === 1) {
+      for (
+        let i = mainStreetValue;
+        i <= mainStreetValue + downStreetValue + 2;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 1;
+          j <= mainStreetStraightValue + 3;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
+    } else if (townStreetType === 2) {
+      for (
+        let i = mainStreetValue - upStreetValue;
+        i <= mainStreetValue + 2 + downStreetValue;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 1;
+          j <= mainStreetStraightValue + 3;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
+    }
+
     return town;
   };
 
@@ -88,6 +138,16 @@ const Experience = () => {
                   key={`${rowIndex}` + cellIndex}
                   xPos={cellIndex}
                   zPos={rowIndex}
+                />
+              );
+            } else if (cell === 1) {
+              return (
+                <Stone
+                  key={`${rowIndex}` + cellIndex}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
                 />
               );
             }

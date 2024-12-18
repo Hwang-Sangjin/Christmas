@@ -22,6 +22,7 @@ const Experience = () => {
 
     const mainStreetValue = Math.floor(Math.random() * 10) + 45;
     const mainStreetStraightValue = Math.floor(Math.random() * 30) + 50;
+    const subStreetStraightValue = Math.floor(Math.random() * 30) + 20;
 
     // 1은 길
     for (let i = mainStreetValue; i <= mainStreetValue + 2; i++) {
@@ -79,6 +80,20 @@ const Experience = () => {
           town[i][j] = 1;
         }
       }
+
+      for (
+        let i = mainStreetValue - upStreetValue;
+        i <= mainStreetValue - upStreetValue + 2;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
     } else if (townStreetType === 1) {
       for (
         let i = mainStreetValue;
@@ -93,6 +108,20 @@ const Experience = () => {
           town[i][j] = 1;
         }
       }
+
+      for (
+        let i = mainStreetValue + downStreetValue - 1;
+        i <= mainStreetValue + downStreetValue + 2;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
     } else if (townStreetType === 2) {
       for (
         let i = mainStreetValue - upStreetValue;
@@ -102,6 +131,34 @@ const Experience = () => {
         for (
           let j = mainStreetStraightValue + 1;
           j <= mainStreetStraightValue + 3;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
+
+      for (
+        let i = mainStreetValue - upStreetValue;
+        i <= mainStreetValue - upStreetValue + 2;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = 1;
+        }
+      }
+
+      for (
+        let i = mainStreetValue + downStreetValue - 1;
+        i <= mainStreetValue + downStreetValue + 2;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
           j++
         ) {
           town[i][j] = 1;

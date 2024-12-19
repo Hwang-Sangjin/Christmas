@@ -63,8 +63,8 @@ const Experience = () => {
 
     const townStreetType = Math.floor(Math.random() * 3);
 
-    const upStreetValue = Math.floor(Math.random() * 5) + 15;
-    const downStreetValue = Math.floor(Math.random() * 5) + 15;
+    const upStreetValue = Math.floor(Math.random() * 5) + 20;
+    const downStreetValue = Math.floor(Math.random() * 5) + 20;
 
     if (townStreetType === 0) {
       for (

@@ -12,13 +12,22 @@ const Stone = ({ xPos, zPos, cellIndex, rowIndex }) => {
   PerlinTexture.wrapS = THREE.RepeatWrapping;
   PerlinTexture.wrapT = THREE.RepeatWrapping;
 
+  const randomArray = useMemo(() => {
+    const arr = [];
+    for (let i = 0; i < 8; i++) {
+      arr.push(Math.random());
+    }
+    return arr;
+  }, []);
+
   const StoneUniforms = useMemo(
     () => ({
       uPerlinTexture: { value: PerlinTexture },
       uCellIndex: { value: cellIndex },
       uRowIndex: { value: rowIndex },
+      uRandomArray: { value: randomArray },
     }),
-    []
+    [randomArray]
   );
 
   useFrame((state, delta) => {
@@ -41,7 +50,7 @@ const Stone = ({ xPos, zPos, cellIndex, rowIndex }) => {
       rotation={[-Math.PI * 0.5, 0, 0]}
       position={[xPos - 100, 0.0, zPos - 50]}
     >
-      <boxGeometry args={[0.9, 0.9, 0.1, 4, 4, 1]} />
+      <boxGeometry args={[0.7, 0.7, 0.1, 16, 16, 2]} />
       <shaderMaterial
         vertexShader={stoneVertexShader}
         fragmentShader={stoneFragmentShader}

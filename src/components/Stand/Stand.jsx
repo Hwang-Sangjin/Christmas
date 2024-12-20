@@ -28,7 +28,7 @@ export function Stand({ xPos, zPos }) {
   return (
     <group
       ref={mesh}
-      scale={4}
+      scale={3}
       position={[xPos - 100, 0, zPos - 50]}
       rotation={[0, -Math.PI * 0.6, 0]}
       dispose={null}
@@ -58,12 +58,6 @@ export function Stand({ xPos, zPos }) {
         >
           <meshBasicMaterial map={bakedTexture} fog={true} />
         </mesh>
-        <pointLight
-          position={[0, 1, 0]}
-          color={"yellow"}
-          intensity={500}
-          distance={11}
-        />
       </group>
     </group>
   );

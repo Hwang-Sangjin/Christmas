@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { Stand } from "./Stand/Stand";
 import Stone from "./Stone";
 
+const di = [-1, -1, 0, 1, 1, 1, 0, -1];
+const dj = [0, 1, 1, 1, 0, -1, -1, -1];
+
 const Experience = () => {
   const HEIGHT = 100;
   const WIDTH = 200;
@@ -43,10 +46,13 @@ const Experience = () => {
       j <= mainStreetStraightValue;
       j += StandLength
     ) {
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - 3 + di[k];
+        let nj = j + dj[k];
+
+        town[ni][nj] = -1;
+      }
       town[mainStreetValue - 3][j] = 2;
-      town[mainStreetValue - 3][j + 1] = -1;
-      town[mainStreetValue - 2][j] = -1;
-      town[mainStreetValue - 2][j + 1] = -1;
     }
 
     for (
@@ -54,10 +60,13 @@ const Experience = () => {
       j <= mainStreetStraightValue;
       j += StandLength
     ) {
-      town[mainStreetValue + 5][j] = -1;
-      town[mainStreetValue + 5][j + 1] = -1;
-      town[mainStreetValue + 6][j] = -1;
-      town[mainStreetValue + 6][j + 1] = 2;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + 5 + di[k];
+        let nj = j + 1 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + 5][j + 1] = 2;
     }
 
     const townStreetType = Math.floor(Math.random() * 3);
@@ -83,23 +92,25 @@ const Experience = () => {
         }
       }
 
-      //up stand
-      town[mainStreetValue - upStreetValue][mainStreetStraightValue] = -1;
-      town[mainStreetValue - upStreetValue][mainStreetStraightValue - 1] = 2;
-      town[mainStreetValue - upStreetValue - 1][mainStreetStraightValue] = -1;
-      town[mainStreetValue - upStreetValue - 1][mainStreetStraightValue - 1] =
-        -1;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 1 + di[k];
+        let nj = mainStreetStraightValue - 1 + dj[k];
 
-      //up stand
-      town[mainStreetValue - upStreetValue + 4][mainStreetStraightValue + 4] =
-        -1;
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 1][
+        mainStreetStraightValue - 1
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 4 + di[k];
+        let nj = mainStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
       town[mainStreetValue - upStreetValue + 4][
         mainStreetStraightValue + 5
       ] = 2;
-      town[mainStreetValue - upStreetValue + 5][mainStreetStraightValue + 4] =
-        -1;
-      town[mainStreetValue - upStreetValue + 5][mainStreetStraightValue + 5] =
-        -1;
 
       //up straight
       for (
@@ -116,7 +127,31 @@ const Experience = () => {
         }
       }
 
-      for (let i = mainStreetValue - upStreetValue; i <= mainStreetValue; i++) {
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 2][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue + 5][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (
+        let i = mainStreetValue - upStreetValue;
+        i <= mainStreetValue + 3;
+        i++
+      ) {
         for (
           let j = mainStreetStraightValue + subStreetStraightValue + 1;
           j <= mainStreetStraightValue + subStreetStraightValue + 3;
@@ -125,6 +160,46 @@ const Experience = () => {
           town[i][j] = 1;
         }
       }
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 2 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 2][
+        mainStreetStraightValue + subStreetStraightValue + 2
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 3 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue + 5][
+        mainStreetStraightValue + subStreetStraightValue - 3
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue][
+        mainStreetStraightValue + subStreetStraightValue + 5
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 1 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue][
+        mainStreetStraightValue + subStreetStraightValue - 1
+      ] = 2;
     }
     //down
     else if (townStreetType === 1) {
@@ -143,25 +218,25 @@ const Experience = () => {
         }
       }
 
-      //up stand
-      town[mainStreetValue + downStreetValue + 2][mainStreetStraightValue] = -1;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue + 2 + di[k];
+        let nj = mainStreetStraightValue - 1 + dj[k];
+
+        town[ni][nj] = -1;
+      }
       town[mainStreetValue + downStreetValue + 2][
         mainStreetStraightValue - 1
       ] = 2;
-      town[mainStreetValue + downStreetValue + 3][mainStreetStraightValue] = -1;
-      town[mainStreetValue + downStreetValue + 3][mainStreetStraightValue - 1] =
-        -1;
 
-      //up stand
-      town[mainStreetValue + downStreetValue - 2][mainStreetStraightValue + 4] =
-        -1;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
       town[mainStreetValue + downStreetValue - 2][
         mainStreetStraightValue + 5
       ] = 2;
-      town[mainStreetValue + downStreetValue - 3][mainStreetStraightValue + 4] =
-        -1;
-      town[mainStreetValue + downStreetValue - 3][mainStreetStraightValue + 5] =
-        -1;
 
       //down straight
       for (
@@ -178,6 +253,26 @@ const Experience = () => {
         }
       }
 
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue - 2][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue + 5][
+        mainStreetStraightValue + 20
+      ] = 2;
+
       for (
         let i = mainStreetValue;
         i <= mainStreetValue + downStreetValue + 2;
@@ -191,6 +286,46 @@ const Experience = () => {
           town[i][j] = 1;
         }
       }
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 2 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue - 2][
+        mainStreetStraightValue + subStreetStraightValue - 2
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 3 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue + 5][
+        mainStreetStraightValue + subStreetStraightValue + 3
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue][
+        mainStreetStraightValue + subStreetStraightValue + 5
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 1 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue][
+        mainStreetStraightValue + subStreetStraightValue - 1
+      ] = 2;
     }
     //up down
     else if (townStreetType === 2) {
@@ -209,43 +344,43 @@ const Experience = () => {
         }
       }
 
-      //up stand
-      town[mainStreetValue - upStreetValue][mainStreetStraightValue] = -1;
-      town[mainStreetValue - upStreetValue][mainStreetStraightValue - 1] = 2;
-      town[mainStreetValue - upStreetValue - 1][mainStreetStraightValue] = -1;
-      town[mainStreetValue - upStreetValue - 1][mainStreetStraightValue - 1] =
-        -1;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 1 + di[k];
+        let nj = mainStreetStraightValue - 1 + dj[k];
 
-      //up stand
-      town[mainStreetValue - upStreetValue + 4][mainStreetStraightValue + 4] =
-        -1;
-      town[mainStreetValue - upStreetValue + 4][
-        mainStreetStraightValue + 5
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 1][
+        mainStreetStraightValue - 1
       ] = 2;
-      town[mainStreetValue - upStreetValue + 5][mainStreetStraightValue + 4] =
-        -1;
-      town[mainStreetValue - upStreetValue + 5][mainStreetStraightValue + 5] =
-        -1;
 
-      //up stand
-      town[mainStreetValue + downStreetValue + 2][mainStreetStraightValue] = -1;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 4 + di[k];
+        let nj = mainStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue][mainStreetStraightValue + 5] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue + 2 + di[k];
+        let nj = mainStreetStraightValue - 1 + dj[k];
+
+        town[ni][nj] = -1;
+      }
       town[mainStreetValue + downStreetValue + 2][
         mainStreetStraightValue - 1
       ] = 2;
-      town[mainStreetValue + downStreetValue + 3][mainStreetStraightValue] = -1;
-      town[mainStreetValue + downStreetValue + 3][mainStreetStraightValue - 1] =
-        -1;
 
-      //up stand
-      town[mainStreetValue + downStreetValue - 2][mainStreetStraightValue + 4] =
-        -1;
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
       town[mainStreetValue + downStreetValue - 2][
         mainStreetStraightValue + 5
       ] = 2;
-      town[mainStreetValue + downStreetValue - 3][mainStreetStraightValue + 4] =
-        -1;
-      town[mainStreetValue + downStreetValue - 3][mainStreetStraightValue + 5] =
-        -1;
 
       //up
       for (
@@ -276,6 +411,26 @@ const Experience = () => {
         }
       }
 
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 2][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue + 5][
+        mainStreetStraightValue + 20
+      ] = 2;
+
       for (
         let i = mainStreetValue - upStreetValue;
         i <= mainStreetValue + downStreetValue + 2;
@@ -289,6 +444,106 @@ const Experience = () => {
           town[i][j] = 1;
         }
       }
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 2][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue + 5][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue - 2][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + 20 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue + 5][
+        mainStreetStraightValue + 20
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 2 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue - 2][
+        mainStreetStraightValue + subStreetStraightValue - 2
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue - 2 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 2 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue - 2][
+        mainStreetStraightValue + subStreetStraightValue + 2
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue - upStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 3 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue - upStreetValue + 5][
+        mainStreetStraightValue + subStreetStraightValue - 3
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 5 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue][
+        mainStreetStraightValue + subStreetStraightValue + 5
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue - 1 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue][
+        mainStreetStraightValue + subStreetStraightValue - 1
+      ] = 2;
+
+      for (let k = 0; k < 8; k++) {
+        let ni = mainStreetValue + downStreetValue + 5 + di[k];
+        let nj = mainStreetStraightValue + subStreetStraightValue + 3 + dj[k];
+
+        town[ni][nj] = -1;
+      }
+      town[mainStreetValue + downStreetValue + 5][
+        mainStreetStraightValue + subStreetStraightValue + 3
+      ] = 2;
     }
 
     return town;
@@ -299,10 +554,6 @@ const Experience = () => {
   useEffect(() => {
     setTown(generateTown());
   }, []);
-
-  useEffect(() => {
-    console.log(town);
-  }, [town]);
 
   return (
     <>

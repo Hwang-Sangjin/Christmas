@@ -19,8 +19,8 @@ export function Stand({ xPos, zPos }) {
         (mesh.current.position.z -= delta * 0.5)
       );
 
-      if (mesh.current.position.x < -100) {
-        mesh.current.position.set(0, 0, zPos - 50);
+      if (mesh.current.position.x < -110) {
+        mesh.current.position.set(300, 0, zPos);
       }
     }
   });

@@ -570,7 +570,7 @@ const Experience = () => {
             if (cell === 2) {
               return (
                 <Stand
-                  key={`${rowIndex}` + cellIndex}
+                  key={`${rowIndex} + ${cellIndex} +${cell}`}
                   xPos={cellIndex}
                   zPos={rowIndex}
                 />
@@ -578,7 +578,7 @@ const Experience = () => {
             } else if (cell === 1) {
               return (
                 <Stone
-                  key={`${rowIndex}` + cellIndex}
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
                   xPos={cellIndex}
                   zPos={rowIndex}
                   cellIndex={cellIndex}

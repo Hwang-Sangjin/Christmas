@@ -32,7 +32,7 @@ export function ChristmasTree(props) {
   return (
     <group
       ref={mesh}
-      scale={6}
+      scale={8}
       rotation={[0, -Math.PI * 0.75, 0]}
       {...props}
       dispose={null}

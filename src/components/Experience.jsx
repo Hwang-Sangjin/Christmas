@@ -560,7 +560,7 @@ const Experience = () => {
     <>
       <Frame />
       <Ground />
-      <Snow />
+      {/* <Snow /> */}
       <Star />
       <Moon />
       <ChristmasTree />

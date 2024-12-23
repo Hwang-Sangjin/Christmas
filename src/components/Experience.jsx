@@ -573,6 +573,7 @@ const Experience = () => {
                   key={`${rowIndex} + ${cellIndex} +${cell}`}
                   xPos={cellIndex}
                   zPos={rowIndex}
+                  cellIndex={cellIndex}
                 />
               );
             } else if (cell === 1) {

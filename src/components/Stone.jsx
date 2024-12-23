@@ -39,7 +39,7 @@ const Stone = ({ xPos, zPos, cellIndex, rowIndex }) => {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(0, 0, zPos - 50);
+        mesh.current.position.set(0, 0, zPos - 25 - cellIndex * 0.3);
       }
     }
   });

@@ -10,6 +10,7 @@ import lightTexture from "&/light.png";
 import Perlin from "&/perlin.png";
 import particlesVertexShader from "../../shaders/light/vertex.glsl";
 import particlesFragmentShader from "../../shaders/light/fragment.glsl";
+import { LightBulb } from "./LightBulb";
 
 export function ChristmasTree(props) {
   const mesh = useRef();
@@ -99,7 +100,7 @@ export function ChristmasTree(props) {
     <group
       ref={mesh}
       scale={8}
-      rotation={[0, -Math.PI * 0.75, 0]}
+      rotation={[0, -Math.PI * 0.8, 0]}
       {...props}
       dispose={null}
     >
@@ -141,8 +142,10 @@ export function ChristmasTree(props) {
           uniforms={particleUniforms}
           vertexShader={particlesVertexShader}
           fragmentShader={particlesFragmentShader}
+          fog={false}
         />
       </points>
+      <LightBulb />
     </group>
   );
 }

@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-export function Stand({ xPos, zPos }) {
+export function Stand({ xPos, zPos, cellIndex }) {
   const mesh = useRef();
   const { nodes, scene, materials } = useGLTF("./Stand/stand.glb");
 
@@ -19,8 +19,8 @@ export function Stand({ xPos, zPos }) {
         (mesh.current.position.z -= delta * 0.5)
       );
 
-      if (mesh.current.position.x < -110) {
-        mesh.current.position.set(300, 0, zPos);
+      if (mesh.current.position.x < -100) {
+        mesh.current.position.set(0, 0, zPos - 25 - cellIndex * 0.3);
       }
     }
   });
@@ -32,6 +32,7 @@ export function Stand({ xPos, zPos }) {
       position={[xPos - 100, 0, zPos - 50]}
       rotation={[0, -Math.PI * 0.6, 0]}
       dispose={null}
+      castShadow={true}
     >
       <group position={[0, 1.832, 0.027]} scale={0.098}>
         <mesh

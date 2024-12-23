@@ -22,8 +22,8 @@ export default function FiberContainer() {
           <Experience />
           <Environment preset="sunset" backgroundBlurriness={0.1} />
           <directionalLight
-            position={[6.25, 3, 4]}
-            color="white"
+            position={[6.25, 10, 4]}
+            color="black"
             intensity={1.2}
           />
           <OrbitControls

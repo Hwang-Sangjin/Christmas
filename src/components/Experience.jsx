@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Stand } from "./Stand/Stand";
 import Stone from "./Stone";
 import { ChristmasTree } from "./ChristmasTree/ChristmasTree";
+import { ChristmasTreeFinal } from "./ChristmasTree/ChristmasTreeFinal";
 
 const di = [-1, -1, 0, 1, 1, 1, 0, -1];
 const dj = [0, 1, 1, 1, 0, -1, -1, -1];
@@ -563,7 +564,7 @@ const Experience = () => {
       {/* <Snow /> */}
       <Star />
       <Moon />
-      <ChristmasTree />
+      <ChristmasTreeFinal />
       {town.map((row, rowIndex) => (
         <>
           {row.map((cell, cellIndex) => {

@@ -89,6 +89,7 @@ export function ChristmasTreeFinal(props) {
   });
   return (
     <group
+      ref={mesh}
       scale={2.5}
       rotation={[0, -Math.PI * 0.6, 0]}
       {...props}

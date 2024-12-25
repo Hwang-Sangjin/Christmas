@@ -25,7 +25,7 @@ const Experience = () => {
       Array.from({ length: WIDTH }, () => 0)
     );
 
-    const mainStreetValue = Math.floor(Math.random() * 10) + 45;
+    const mainStreetValue = Math.floor(Math.random() * 10) + 60;
     const mainStreetStraightValue = Math.floor(Math.random() * 30) + 50;
 
     // 1은 길

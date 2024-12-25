@@ -8,7 +8,7 @@ import particlesVertexShader from "../../shaders/light/vertex.glsl";
 import particlesFragmentShader from "../../shaders/light/fragment.glsl";
 import { LightBulb } from "./LightBulb";
 
-export function ChristmasTreeFinal(props) {
+export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
   const mesh = useRef();
   const pointMesh = useRef();
   const { nodes, materials } = useGLTF("./christmasTree/treeFinal.glb");
@@ -79,8 +79,8 @@ export function ChristmasTreeFinal(props) {
         (mesh.current.position.z -= delta * 0.5)
       );
 
-      if (mesh.current.position.x < -110) {
-        mesh.current.position.set(300, 0, 0);
+      if (mesh.current.position.x < -100) {
+        mesh.current.position.set(0, 0, zPos - 25 - cellIndex * 0.3);
       }
     }
 
@@ -91,8 +91,8 @@ export function ChristmasTreeFinal(props) {
     <group
       ref={mesh}
       scale={2.5}
+      position={[xPos - 100, 0, zPos - 50]}
       rotation={[0, -Math.PI * 0.6, 0]}
-      {...props}
       dispose={null}
     >
       <mesh

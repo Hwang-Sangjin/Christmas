@@ -15,7 +15,7 @@ const di = [-1, -1, 0, 1, 1, 1, 0, -1];
 const dj = [0, 1, 1, 1, 0, -1, -1, -1];
 
 const Experience = () => {
-  const HEIGHT = 100;
+  const HEIGHT = 200;
   const WIDTH = 200;
   const StandLength = 20;
 
@@ -548,6 +548,25 @@ const Experience = () => {
       ] = 2;
     }
 
+    const treeOffset = 3;
+    const treeZ =
+      mainStreetStraightValue + Math.floor(subStreetStraightValue / 2);
+
+    // for (
+    //   let i = mainStreetValue - treeOffset;
+    //   i <= mainStreetValue + treeOffset;
+    //   i++
+    // ) {
+    //   for (
+    //     let j = mainStreetStraightValue - treeOffset;
+    //     j <= mainStreetStraightValue + treeOffset;
+    //     j++
+    //   ) {
+    //     town[i][j] = -1;
+    //   }
+    // }
+    town[mainStreetValue][treeZ] = 3;
+
     return town;
   };
 
@@ -561,10 +580,10 @@ const Experience = () => {
     <>
       <Frame />
       <Ground />
-      {/* <Snow /> */}
+      <Snow />
       <Star />
       <Moon />
-      <ChristmasTreeFinal />
+
       {town.map((row, rowIndex) => (
         <>
           {row.map((cell, cellIndex) => {
@@ -580,6 +599,16 @@ const Experience = () => {
             } else if (cell === 1) {
               return (
                 <Stone
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                />
+              );
+            } else if (cell === 3) {
+              return (
+                <ChristmasTreeFinal
                   key={`${rowIndex} + ${cellIndex} + ${cell}`}
                   xPos={cellIndex}
                   zPos={rowIndex}

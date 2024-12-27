@@ -95,7 +95,7 @@ export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
     <group
       ref={mesh}
       scale={2.5}
-      position={[xPos - 150, 0, zPos - 50]}
+      position={[xPos - 100, 0, zPos - 50]}
       rotation={[0, -Math.PI * 0.6, 0]}
       dispose={null}
     >

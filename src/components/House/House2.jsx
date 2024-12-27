@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-const House2 = () => {
+const House2 = ({ xPos, zPos, cellIndex, rowIndex, rotate }) => {
   const mesh = useRef();
   const { nodes, materials } = useGLTF("./House/house2.glb");
 
@@ -26,9 +26,15 @@ const House2 = () => {
   });
 
   return (
-    <group scale={3} rotation={[0, -Math.PI * 0.5, 0]} dispose={null}>
+    <group
+      ref={mesh}
+      position={[xPos - 100, 0, zPos - 50]}
+      scale={3}
+      rotation={[0, rotate, 0]}
+      dispose={null}
+    >
       <group
-        position={[-0.668, 0.8, -2.014]}
+        position={[-0.0, 0.8, -2.014]}
         rotation={[Math.PI / 2, 0, -0.033]}
         scale={[0.17, 0.112, 0.211]}
       >

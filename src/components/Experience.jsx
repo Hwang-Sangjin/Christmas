@@ -74,7 +74,38 @@ const Experience = () => {
       town[mainStreetValue + 5][j + 1] = 2;
     }
 
-    const townStreetType = Math.floor(Math.random() * 3);
+    // 4 5 6  집 -Math.PI * 0.5
+    // 7 8 9  집 Math.PI * 0.5
+    // 10 11 12 집 0
+    // 13 14 15 집 Math.PI
+    const houseStartPoint = standStartPoint + Math.floor(StandLength / 2);
+    for (
+      let k = houseStartPoint;
+      k <= mainStreetStraightValue - 5;
+      k += StandLength
+    ) {
+      for (let i = mainStreetValue - 7; i <= mainStreetValue - 3; i++) {
+        for (let j = k - 2; j <= k + 2; j++) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[mainStreetValue - 5][k] = Math.floor(Math.random() * 3 + 4);
+    }
+    for (
+      let k = houseStartPoint + 2;
+      k <= mainStreetStraightValue - 5;
+      k += StandLength
+    ) {
+      for (let i = mainStreetValue + 3; i <= mainStreetValue + 7; i++) {
+        for (let j = k - 2; j <= k + 2; j++) {
+          town[i][j] = -1;
+        }
+      }
+      town[mainStreetValue + 7][k] = Math.floor(Math.random() * 3 + 7);
+    }
+
+    const townStreetType = Math.floor(Math.random());
 
     const upStreetValue = Math.floor(Math.random() * 5) + 25;
     const downStreetValue = Math.floor(Math.random() * 5) + 25;
@@ -117,6 +148,37 @@ const Experience = () => {
         mainStreetStraightValue + 5
       ] = 2;
 
+      //집
+      const houseUpI = mainStreetValue - Math.floor(upStreetValue / 2);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue - 6;
+          j <= mainStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue - 4] = Math.floor(
+        Math.random() * 3 + 10
+      );
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + 8] = Math.floor(
+        Math.random() * 3 + 13
+      );
+
       //up straight
       for (
         let i = mainStreetValue - upStreetValue;
@@ -131,7 +193,7 @@ const Experience = () => {
           town[i][j] = 1;
         }
       }
-
+      // up straight stand
       for (let k = 0; k < 8; k++) {
         let ni = mainStreetValue - upStreetValue - 2 + di[k];
         let nj = mainStreetStraightValue + 20 + dj[k];
@@ -152,6 +214,7 @@ const Experience = () => {
         mainStreetStraightValue + 20
       ] = 2;
 
+      // up straight street
       for (
         let i = mainStreetValue - upStreetValue;
         i <= mainStreetValue + 3;
@@ -164,6 +227,17 @@ const Experience = () => {
         ) {
           town[i][j] = 1;
         }
+      }
+      // up house
+      const houseUpStartPoint = mainStreetStraightValue + 7;
+      for (
+        let k = houseUpStartPoint;
+        k <= houseUpStartPoint + subStreetStraightValue - 8;
+        k += 8
+      ) {
+        town[mainStreetValue - upStreetValue - 5][k] = Math.floor(
+          Math.random() * 3 + 4
+        );
       }
 
       for (let k = 0; k < 8; k++) {
@@ -555,6 +629,7 @@ const Experience = () => {
     const treeZ =
       mainStreetStraightValue + Math.floor(subStreetStraightValue / 2);
 
+    // 3 트리
     for (
       let i = mainStreetValue - treeOffset;
       i <= mainStreetValue + treeOffset;
@@ -565,6 +640,8 @@ const Experience = () => {
       }
     }
     town[mainStreetValue][treeZ] = 3;
+
+    console.log(town);
 
     return town;
   };
@@ -615,6 +692,138 @@ const Experience = () => {
                   zPos={rowIndex}
                   cellIndex={cellIndex}
                   rowIndex={rowIndex}
+                />
+              );
+            } else if (cell === 4) {
+              return (
+                <House1
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={-Math.PI * 0.5}
+                />
+              );
+            } else if (cell === 5) {
+              return (
+                <House2
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={-Math.PI * 0.5}
+                />
+              );
+            } else if (cell === 6) {
+              return (
+                <House3
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={-Math.PI * 0.5}
+                />
+              );
+            } else if (cell === 7) {
+              return (
+                <House1
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={Math.PI * 0.5}
+                />
+              );
+            } else if (cell === 8) {
+              return (
+                <House2
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={Math.PI * 0.5}
+                />
+              );
+            } else if (cell === 9) {
+              return (
+                <House3
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={Math.PI * 0.5}
+                />
+              );
+            } else if (cell === 10) {
+              return (
+                <House1
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={0}
+                />
+              );
+            } else if (cell === 11) {
+              return (
+                <House2
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={0}
+                />
+              );
+            } else if (cell === 12) {
+              return (
+                <House3
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={0}
+                />
+              );
+            } else if (cell === 13) {
+              return (
+                <House1
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={Math.PI}
+                />
+              );
+            } else if (cell === 14) {
+              return (
+                <House2
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={Math.PI}
+                />
+              );
+            } else if (cell === 15) {
+              return (
+                <House3
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={Math.PI}
                 />
               );
             }

@@ -8,8 +8,11 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import { Stand } from "./Stand/Stand";
 import Stone from "./Stone";
-import { ChristmasTree } from "./ChristmasTree/ChristmasTree";
+
 import { ChristmasTreeFinal } from "./ChristmasTree/ChristmasTreeFinal";
+import House1 from "./House/House1";
+import House2 from "./House/House2";
+import House3 from "./House/House3";
 
 const di = [-1, -1, 0, 1, 1, 1, 0, -1];
 const dj = [0, 1, 1, 1, 0, -1, -1, -1];
@@ -548,23 +551,19 @@ const Experience = () => {
       ] = 2;
     }
 
-    const treeOffset = 3;
+    const treeOffset = 5;
     const treeZ =
       mainStreetStraightValue + Math.floor(subStreetStraightValue / 2);
 
-    // for (
-    //   let i = mainStreetValue - treeOffset;
-    //   i <= mainStreetValue + treeOffset;
-    //   i++
-    // ) {
-    //   for (
-    //     let j = mainStreetStraightValue - treeOffset;
-    //     j <= mainStreetStraightValue + treeOffset;
-    //     j++
-    //   ) {
-    //     town[i][j] = -1;
-    //   }
-    // }
+    for (
+      let i = mainStreetValue - treeOffset;
+      i <= mainStreetValue + treeOffset;
+      i++
+    ) {
+      for (let j = treeZ - treeOffset; j <= treeZ + treeOffset; j++) {
+        town[i][j] = -1;
+      }
+    }
     town[mainStreetValue][treeZ] = 3;
 
     return town;
@@ -583,6 +582,8 @@ const Experience = () => {
       <Snow />
       <Star />
       <Moon />
+      {/* <House1 />
+      <House3 /> */}
 
       {town.map((row, rowIndex) => (
         <>

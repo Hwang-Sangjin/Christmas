@@ -12,6 +12,10 @@ export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
   const mesh = useRef();
   const pointMesh = useRef();
   const { nodes, materials } = useGLTF("./christmasTree/treeFinal.glb");
+  const starGeo = useGLTF("./christmasTree/treeStar.glb");
+  const bakedTexture = useTexture("./christmasTree/christmasTree.jpg");
+  bakedTexture.flipY = false;
+  bakedTexture.colorSpace = THREE.SRGBColorSpace;
 
   const ParticleTexture = new THREE.TextureLoader().load(lightTexture);
   const PerlinTexture = new THREE.TextureLoader().load(Perlin);
@@ -33,7 +37,7 @@ export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
 
   const particle_cnt = 1500; //0~5000
   const radiusArr = [
-    0.38, 0.32, 0.33, 0.3, 0.24, 0.22, 0.21, 0.17, 0.11, 0.06, 0.03,
+    1.3, 1.25, 1.15, 1.0, 0.95, 0.8, 0.65, 0.5, 0.3, 0.2, 0.15,
   ];
 
   useEffect(() => {
@@ -44,10 +48,10 @@ export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
     for (let i = 0; i < particle_cnt; i++) {
       let i3 = i * 3;
       const theta = Math.random() * 2 * Math.PI;
-      const height = Math.floor(Math.random() * 10);
-      const heightRandom = (Math.random() - 0.5) * 0.08;
+      const height = Math.floor(Math.random() * 11);
+      const heightRandom = (Math.random() - 0.5) * 0.5;
       positionArray[i3] = (radiusArr[height] - heightRandom) * Math.cos(theta);
-      positionArray[i3 + 1] = 0.1 * height + 0.1 + heightRandom;
+      positionArray[i3 + 1] = 0.32 * height + 1.2 + heightRandom;
       positionArray[i3 + 2] =
         (radiusArr[height] - heightRandom) * Math.sin(theta);
 
@@ -91,7 +95,7 @@ export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
     <group
       ref={mesh}
       scale={2.5}
-      position={[xPos - 100, 0, zPos - 50]}
+      position={[xPos - 150, 0, zPos - 50]}
       rotation={[0, -Math.PI * 0.6, 0]}
       dispose={null}
     >
@@ -121,9 +125,21 @@ export function ChristmasTreeFinal({ xPos, zPos, cellIndex, rowIndex }) {
           fog={false}
         />
       </points>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={starGeo.nodes.Cylinder001.geometry}
+        material={starGeo.materials["Material.040"]}
+        position={[-0.017, 4.7, -0.01]}
+        rotation={[Math.PI / 2, 0, 1.658]}
+        scale={[0.2, 0.1, 0.2]}
+      >
+        <meshBasicMaterial map={bakedTexture} />
+      </mesh>
       <LightBulb />
     </group>
   );
 }
 
 useGLTF.preload("/christmasTree/treeFinal.glb");
+useGLTF.preload("/christmasTree/treeStar.glb");

@@ -105,7 +105,7 @@ const Experience = () => {
       town[mainStreetValue + 7][k] = Math.floor(Math.random() * 3 + 7);
     }
 
-    const townStreetType = Math.floor(Math.random());
+    const townStreetType = Math.floor(Math.random() * 3);
 
     const upStreetValue = Math.floor(Math.random() * 5) + 25;
     const downStreetValue = Math.floor(Math.random() * 5) + 25;
@@ -148,7 +148,7 @@ const Experience = () => {
         mainStreetStraightValue + 5
       ] = 2;
 
-      //집
+      // house up
       const houseUpI = mainStreetValue - Math.floor(upStreetValue / 2);
 
       for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
@@ -235,6 +235,15 @@ const Experience = () => {
         k <= houseUpStartPoint + subStreetStraightValue - 8;
         k += 8
       ) {
+        for (
+          let i = mainStreetValue - upStreetValue - 7;
+          i <= mainStreetValue - upStreetValue - 3;
+          i++
+        ) {
+          for (let j = k - 2; j <= k + 2; j++) {
+            town[i][j] = -1;
+          }
+        }
         town[mainStreetValue - upStreetValue - 5][k] = Math.floor(
           Math.random() * 3 + 4
         );
@@ -269,6 +278,33 @@ const Experience = () => {
       town[mainStreetValue][
         mainStreetStraightValue + subStreetStraightValue + 5
       ] = 2;
+
+      // house down
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue - 6;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue - 4] =
+        Math.floor(Math.random() * 3 + 10);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue + 8] =
+        Math.floor(Math.random() * 3 + 13);
 
       for (let k = 0; k < 8; k++) {
         let ni = mainStreetValue + di[k];
@@ -405,6 +441,87 @@ const Experience = () => {
       town[mainStreetValue][
         mainStreetStraightValue + subStreetStraightValue - 1
       ] = 2;
+
+      // house
+
+      // house down
+      const houseUpI = mainStreetValue + Math.floor(downStreetValue / 2);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue - 6;
+          j <= mainStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue - 4] = Math.floor(
+        Math.random() * 3 + 10
+      );
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + 8] = Math.floor(
+        Math.random() * 3 + 13
+      );
+
+      // up house
+      const houseUpStartPoint = mainStreetStraightValue + 7;
+      for (
+        let k = houseUpStartPoint;
+        k <= houseUpStartPoint + subStreetStraightValue - 8;
+        k += 8
+      ) {
+        for (
+          let i = mainStreetValue - upStreetValue - 7;
+          i <= mainStreetValue - upStreetValue - 3;
+          i++
+        ) {
+          for (let j = k - 2; j <= k + 2; j++) {
+            town[i][j] = -1;
+          }
+        }
+        town[mainStreetValue + downStreetValue + 5][k] = Math.floor(
+          Math.random() * 3 + 7
+        );
+      }
+
+      // house down
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue - 6;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue - 4] =
+        Math.floor(Math.random() * 3 + 10);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue + 8] =
+        Math.floor(Math.random() * 3 + 13);
     }
     //up down
     else if (townStreetType === 2) {
@@ -623,6 +740,167 @@ const Experience = () => {
       town[mainStreetValue + downStreetValue + 5][
         mainStreetStraightValue + subStreetStraightValue + 3
       ] = 2;
+
+      // house up
+      const houseUpI = mainStreetValue - Math.floor(upStreetValue / 2);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue - 6;
+          j <= mainStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue - 4] = Math.floor(
+        Math.random() * 3 + 10
+      );
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + 8] = Math.floor(
+        Math.random() * 3 + 13
+      );
+
+      // up house
+      const houseUpStartPoint = mainStreetStraightValue + 7;
+      for (
+        let k = houseUpStartPoint;
+        k <= houseUpStartPoint + subStreetStraightValue - 8;
+        k += 8
+      ) {
+        for (
+          let i = mainStreetValue - upStreetValue - 7;
+          i <= mainStreetValue - upStreetValue - 3;
+          i++
+        ) {
+          for (let j = k - 2; j <= k + 2; j++) {
+            town[i][j] = -1;
+          }
+        }
+        town[mainStreetValue - upStreetValue - 5][k] = Math.floor(
+          Math.random() * 3 + 4
+        );
+      }
+
+      // house down
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue - 6;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue - 4] =
+        Math.floor(Math.random() * 3 + 10);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue + 8] =
+        Math.floor(Math.random() * 3 + 13);
+
+      //house down
+      // house
+
+      // house down
+      const houseDownI = mainStreetValue + Math.floor(downStreetValue / 2);
+
+      for (let i = houseDownI - 2; i <= houseDownI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue - 6;
+          j <= mainStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseDownI][mainStreetStraightValue - 4] = Math.floor(
+        Math.random() * 3 + 10
+      );
+
+      for (let i = houseDownI - 2; i <= houseDownI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseDownI][mainStreetStraightValue + 8] = Math.floor(
+        Math.random() * 3 + 13
+      );
+
+      // up house
+      const houseDownStartPoint = mainStreetStraightValue + 7;
+      for (
+        let k = houseDownStartPoint;
+        k <= houseDownStartPoint + subStreetStraightValue - 8;
+        k += 8
+      ) {
+        for (
+          let i = mainStreetValue - upStreetValue - 7;
+          i <= mainStreetValue - upStreetValue - 3;
+          i++
+        ) {
+          for (let j = k - 2; j <= k + 2; j++) {
+            town[i][j] = -1;
+          }
+        }
+        town[mainStreetValue + downStreetValue + 5][k] = Math.floor(
+          Math.random() * 3 + 7
+        );
+      }
+
+      // house down
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue - 6;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue - 4] =
+        Math.floor(Math.random() * 3 + 10);
+
+      for (let i = houseUpI - 2; i <= houseUpI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseUpI][mainStreetStraightValue + subStreetStraightValue + 8] =
+        Math.floor(Math.random() * 3 + 13);
     }
 
     const treeOffset = 5;
@@ -640,8 +918,6 @@ const Experience = () => {
       }
     }
     town[mainStreetValue][treeZ] = 3;
-
-    console.log(town);
 
     return town;
   };

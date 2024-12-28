@@ -13,6 +13,8 @@ import { ChristmasTreeFinal } from "./ChristmasTree/ChristmasTreeFinal";
 import House1 from "./House/House1";
 import House2 from "./House/House2";
 import House3 from "./House/House3";
+import Bush from "./Bush/Bush";
+import { Snowman } from "./Snowman/Snowman";
 
 const di = [-1, -1, 0, 1, 1, 1, 0, -1];
 const dj = [0, 1, 1, 1, 0, -1, -1, -1];
@@ -88,6 +90,8 @@ const Experience = () => {
         for (let j = k - 2; j <= k + 2; j++) {
           town[i][j] = -1;
         }
+
+        town[i][k - 2] = 16;
       }
 
       town[mainStreetValue - 5][k] = Math.floor(Math.random() * 3 + 4);
@@ -101,6 +105,8 @@ const Experience = () => {
         for (let j = k - 2; j <= k + 2; j++) {
           town[i][j] = -1;
         }
+
+        town[i + 1][k + 3] = 16;
       }
       town[mainStreetValue + 7][k] = Math.floor(Math.random() * 3 + 7);
     }
@@ -919,6 +925,8 @@ const Experience = () => {
     }
     town[mainStreetValue][treeZ] = 3;
 
+    town[mainStreetValue][treeZ - 10] = 17;
+
     return town;
   };
 
@@ -935,8 +943,6 @@ const Experience = () => {
       <Snow />
       <Star />
       <Moon />
-      {/* <House1 />
-      <House3 /> */}
 
       {town.map((row, rowIndex) => (
         <>
@@ -1100,6 +1106,28 @@ const Experience = () => {
                   cellIndex={cellIndex}
                   rowIndex={rowIndex}
                   rotate={Math.PI}
+                />
+              );
+            } else if (cell === 16) {
+              return (
+                <Bush
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                />
+              );
+            } else if (cell === 17) {
+              const snowRotation = Math.random() - 0.8;
+              return (
+                <Snowman
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                  rotate={snowRotation * Math.PI}
                 />
               );
             }

@@ -1119,7 +1119,6 @@ const Experience = () => {
                 />
               );
             } else if (cell === 17) {
-              const snowRotation = Math.random() - 0.8;
               return (
                 <Snowman
                   key={`${rowIndex} + ${cellIndex} + ${cell}`}
@@ -1127,7 +1126,6 @@ const Experience = () => {
                   zPos={rowIndex}
                   cellIndex={cellIndex}
                   rowIndex={rowIndex}
-                  rotate={snowRotation * Math.PI}
                 />
               );
             }

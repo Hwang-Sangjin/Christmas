@@ -30,7 +30,7 @@ export function Snowman({ xPos, zPos, cellIndex, rowIndex, rotate }) {
       ref={mesh}
       scale={3}
       position={[xPos - 100, 0, zPos - 50]}
-      rotation={[0, rotate, 0]}
+      rotation={[0, -Math.PI * 0.8, 0]}
       dispose={null}
     >
       <group

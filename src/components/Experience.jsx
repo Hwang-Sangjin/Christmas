@@ -23,6 +23,7 @@ const Experience = () => {
   const HEIGHT = 200;
   const WIDTH = 200;
   const StandLength = 20;
+  const [town, setTown] = useState([]);
 
   const generateTown = () => {
     // Step 1: Initialize the 2D array with 0
@@ -111,7 +112,7 @@ const Experience = () => {
       town[mainStreetValue + 7][k] = Math.floor(Math.random() * 3 + 7);
     }
 
-    const townStreetType = Math.floor(Math.random() * 3);
+    const townStreetType = Math.floor(Math.random() + 2);
 
     const upStreetValue = Math.floor(Math.random() * 5) + 25;
     const downStreetValue = Math.floor(Math.random() * 5) + 25;
@@ -131,6 +132,20 @@ const Experience = () => {
           j++
         ) {
           town[i][j] = 1;
+        }
+      }
+
+      for (
+        let i = mainStreetValue - upStreetValue + 3;
+        i <= mainStreetValue;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
         }
       }
 
@@ -339,6 +354,20 @@ const Experience = () => {
         }
       }
 
+      for (
+        let i = mainStreetValue;
+        i <= mainStreetValue + downStreetValue - 3;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
       for (let k = 0; k < 8; k++) {
         let ni = mainStreetValue + downStreetValue + 2 + di[k];
         let nj = mainStreetStraightValue - 1 + dj[k];
@@ -543,6 +572,20 @@ const Experience = () => {
           j++
         ) {
           town[i][j] = 1;
+        }
+      }
+
+      for (
+        let i = mainStreetValue - upStreetValue + 3;
+        i <= mainStreetValue + downStreetValue - 1;
+        i++
+      ) {
+        for (
+          let j = mainStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
         }
       }
 
@@ -794,6 +837,7 @@ const Experience = () => {
             town[i][j] = -1;
           }
         }
+
         town[mainStreetValue - upStreetValue - 5][k] = Math.floor(
           Math.random() * 3 + 4
         );
@@ -868,8 +912,8 @@ const Experience = () => {
         k += 8
       ) {
         for (
-          let i = mainStreetValue - upStreetValue - 7;
-          i <= mainStreetValue - upStreetValue - 3;
+          let i = mainStreetValue + downStreetValue + 3;
+          i <= mainStreetValue + downStreetValue + 7;
           i++
         ) {
           for (let j = k - 2; j <= k + 2; j++) {
@@ -907,6 +951,33 @@ const Experience = () => {
 
       town[houseUpI][mainStreetStraightValue + subStreetStraightValue + 8] =
         Math.floor(Math.random() * 3 + 13);
+
+      // house down
+      for (let i = houseDownI - 2; i <= houseDownI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue - 6;
+          j <= mainStreetStraightValue + subStreetStraightValue;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseDownI][mainStreetStraightValue + subStreetStraightValue - 4] =
+        Math.floor(Math.random() * 3 + 10);
+
+      for (let i = houseDownI - 2; i <= houseDownI + 2; i++) {
+        for (
+          let j = mainStreetStraightValue + subStreetStraightValue + 4;
+          j <= mainStreetStraightValue + subStreetStraightValue + 10;
+          j++
+        ) {
+          town[i][j] = -1;
+        }
+      }
+
+      town[houseDownI][mainStreetStraightValue + subStreetStraightValue + 8] =
+        Math.floor(Math.random() * 3 + 13);
     }
 
     const treeOffset = 5;
@@ -925,16 +996,21 @@ const Experience = () => {
     }
     town[mainStreetValue][treeZ] = 3;
 
+    // snow man
     town[mainStreetValue][treeZ - 10] = 17;
+
+    // trees
 
     return town;
   };
 
-  const [town, setTown] = useState([]);
-
   useEffect(() => {
     setTown(generateTown());
   }, []);
+
+  useEffect(() => {
+    console.log(town);
+  }, [town]);
 
   return (
     <>
@@ -1121,6 +1197,16 @@ const Experience = () => {
             } else if (cell === 17) {
               return (
                 <Snowman
+                  key={`${rowIndex} + ${cellIndex} + ${cell}`}
+                  xPos={cellIndex}
+                  zPos={rowIndex}
+                  cellIndex={cellIndex}
+                  rowIndex={rowIndex}
+                />
+              );
+            } else if (cell === 18) {
+              return (
+                <Tree1
                   key={`${rowIndex} + ${cellIndex} + ${cell}`}
                   xPos={cellIndex}
                   zPos={rowIndex}

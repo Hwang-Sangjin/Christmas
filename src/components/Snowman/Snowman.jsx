@@ -28,7 +28,7 @@ export function Snowman({ xPos, zPos, cellIndex, rowIndex, rotate }) {
   return (
     <group
       ref={mesh}
-      scale={3}
+      scale={4}
       position={[xPos - 100, 0, zPos - 50]}
       rotation={[0, -Math.PI * 0.8, 0]}
       dispose={null}

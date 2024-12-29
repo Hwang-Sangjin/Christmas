@@ -3,12 +3,12 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-const Tree1 = ({ xPos = 0, zPos = -10 }) => {
+const Tree1 = ({ xPos, zPos, cellIndex }) => {
   const mesh = useRef();
   const { nodes, scene, materials } = useGLTF("./Tree/tree.glb");
 
-  const size = Math.random() * 0.3 + 0.35;
-  const rotation = Math.random() * 0.5 + 0.5;
+  const size = Math.random() * 2 + 2;
+  const rotation = -Math.random() * 2.0 - 0.5;
 
   // Load all textures
   const bakedTexture = useTexture("./Tree/tree.jpg");
@@ -26,17 +26,7 @@ const Tree1 = ({ xPos = 0, zPos = -10 }) => {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(100, 0, zPos + 20);
-      }
-      if (mesh.current.position.z < -48) {
-        mesh.current.position.set(
-          (mesh.current.position.x -= delta * 0.5),
-          0,
-          -48
-        );
-        if (mesh.current.position.x < -100) {
-          mesh.current.position.set(100, 0, zPos + 20);
-        }
+        mesh.current.position.set(0, 0, zPos - 25 - cellIndex * 0.3);
       }
     }
   });
@@ -44,9 +34,10 @@ const Tree1 = ({ xPos = 0, zPos = -10 }) => {
   return (
     <group
       ref={mesh}
+      position={[xPos - 100, 0, zPos - 50]}
+      rotation={[0, rotation, 0]}
       dispose={null}
-      scale={4}
-      rotation={[0, -Math.PI * 0.6, 0]}
+      scale={size}
     >
       <mesh
         castShadow

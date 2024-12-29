@@ -10,10 +10,9 @@ import { Suspense, useRef } from "react";
 
 import { Loader } from "./Loader/Loader";
 import Experience from "./Experience";
+import FixedCamera from "./FixedCamera";
 
 export default function FiberContainer() {
-  const cameraControlRef = useRef(null);
-
   return (
     <>
       <Loader />
@@ -26,17 +25,7 @@ export default function FiberContainer() {
             color="black"
             intensity={1.2}
           />
-          <OrbitControls
-            target={[-45, 0, -25]}
-            ref={cameraControlRef}
-            enablePan={true}
-            minDistance={1}
-            maxDistance={200}
-            // minAzimuthAngle={-Math.PI / 4}
-            // maxAzimuthAngle={Math.PI / 4}
-            // minPolarAngle={Math.PI / 100}
-            // maxPolarAngle={Math.PI - Math.PI / 2}
-          />
+          <FixedCamera />
         </Suspense>
         <fog attach="fog" args={["#fbfbfb", 60, 100]} />
       </Canvas>

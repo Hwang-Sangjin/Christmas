@@ -16,6 +16,8 @@ const AudioPlayer = ({
   duration,
   onClickNext,
   onClickPrevious,
+  volume,
+  handleVolumeChange,
 }) => {
   const [isUp, setIsUp] = useState(false);
 
@@ -42,14 +44,14 @@ const AudioPlayer = ({
             <div className="flex flex-row">
               <div>
                 <img
-                  className="w-32 h-32"
+                  className="w-32 h-32 rounded-lg "
                   src={playMusic?.musicImageSrc}
                   alt="music image"
                 />
               </div>
-              <div className="flex flex-col flex-1">
-                <div>{playMusic?.musicName}</div>
-                <div>{playMusic?.musicArtist}</div>
+              <div className="flex flex-col flex-1 m-5 font-bold">
+                <div className="m-3">{playMusic?.musicName}</div>
+                <div className="m-3 text-sm">{playMusic?.musicArtist}</div>
               </div>
             </div>
           </div>
@@ -84,7 +86,22 @@ const AudioPlayer = ({
             />
           </div>
 
-          <div className="flex flex-1"></div>
+          <div className="flex flex-1">
+            <input
+              type="range"
+              className="progressBar"
+              value={volume}
+              min={0}
+              step={0.05}
+              max={1}
+              aria-valuemin={0}
+              aria-valuemax={1}
+              aria-valuenow={volume}
+              onChange={(e) => {
+                handleVolumeChange(e.currentTarget.valueAsNumber);
+              }}
+            />
+          </div>
         </div>
       </Drawer>
     </>

@@ -36,6 +36,7 @@ const Container = () => {
   const [duration, setDuration] = useState("00:00");
   const [playIndex, setPlayIndex] = useState(0);
   const [userPlay, setUserPlay] = useState(false);
+  const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
     setMusicList(shuffle(musicList));
@@ -103,6 +104,12 @@ const Container = () => {
     }
   };
 
+  const handleVolumeChange = (volumeValue) => {
+    if (!audioRef.current) return;
+    audioRef.current.volume = volumeValue;
+    setVolume(volumeValue);
+  };
+
   return (
     <>
       <audio
@@ -117,6 +124,9 @@ const Container = () => {
           setRange((e.target?.currentTime / e.target?.duration || 0) * 100);
         }}
         onEnded={onClickNext}
+        onCanPlay={(e) => {
+          e.currentTarget.volume = volume;
+        }}
       ></audio>
       <FiberContainer />
       <AudioPlayer
@@ -129,6 +139,8 @@ const Container = () => {
         onClickNext={onClickNext}
         onClickPrevious={onClickPrevious}
         duration={duration}
+        volume={volume}
+        handleVolumeChange={handleVolumeChange}
       />
     </>
   );

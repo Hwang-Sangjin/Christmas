@@ -39,7 +39,7 @@ const Stone = ({ xPos, zPos, cellIndex, rowIndex }) => {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(0, 0, zPos - 25 - cellIndex * 0.3);
+        mesh.current.position.set(100, 0, zPos + 25 - cellIndex * 0.3);
       }
     }
   });
@@ -48,7 +48,7 @@ const Stone = ({ xPos, zPos, cellIndex, rowIndex }) => {
     <mesh
       ref={mesh}
       rotation={[-Math.PI * 0.5, 0, 0]}
-      position={[xPos - 100, 0.0, zPos - 50]}
+      position={[xPos - 100, 0, zPos - 50]}
     >
       <boxGeometry args={[0.7, 0.7, 0.1, 16, 16, 2]} />
       <shaderMaterial

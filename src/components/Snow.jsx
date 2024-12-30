@@ -23,7 +23,7 @@ const Snow = () => {
     []
   );
   const [SnowGeometry, setSnowGeometry] = useState(new THREE.BufferGeometry());
-  const particle_cnt = 5000; //0~5000
+  const particle_cnt = 3000; //0~5000
 
   useEffect(() => {
     const temp = new THREE.BufferGeometry();

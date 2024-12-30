@@ -24,6 +24,11 @@ const Experience = () => {
   const WIDTH = 200;
   const StandLength = 20;
   const [town, setTown] = useState([]);
+  const [forest, setForest] = useState([]);
+  const TreeCnt = 100;
+  const ForestTreeCnt = 200;
+  const ForestHEIGHT = 200;
+  const ForestWIDTH = 90;
 
   const generateTown = () => {
     // Step 1: Initialize the 2D array with 0
@@ -33,7 +38,6 @@ const Experience = () => {
 
     const mainStreetValue = Math.floor(Math.random() * 10) + 60;
     const mainStreetStraightValue = Math.floor(Math.random() * 30) + 50;
-
     // 1은 길
     for (let i = mainStreetValue; i <= mainStreetValue + 2; i++) {
       for (let j = 0; j <= mainStreetStraightValue; j++) {
@@ -112,12 +116,11 @@ const Experience = () => {
       town[mainStreetValue + 7][k] = Math.floor(Math.random() * 3 + 7);
     }
 
-    const townStreetType = Math.floor(Math.random() + 2);
+    const townStreetType = Math.floor(Math.random() * 3);
 
     const upStreetValue = Math.floor(Math.random() * 5) + 25;
     const downStreetValue = Math.floor(Math.random() * 5) + 25;
     const subStreetStraightValue = Math.floor(Math.random() * 10) + 40;
-
     //up
     if (townStreetType === 0) {
       //up
@@ -912,15 +915,15 @@ const Experience = () => {
         k += 8
       ) {
         for (
-          let i = mainStreetValue + downStreetValue + 3;
-          i <= mainStreetValue + downStreetValue + 7;
+          let i = mainStreetValue + downStreetValue + 4;
+          i <= mainStreetValue + downStreetValue + 8;
           i++
         ) {
           for (let j = k - 2; j <= k + 2; j++) {
             town[i][j] = -1;
           }
         }
-        town[mainStreetValue + downStreetValue + 5][k] = Math.floor(
+        town[mainStreetValue + downStreetValue + 6][k] = Math.floor(
           Math.random() * 3 + 7
         );
       }
@@ -1000,6 +1003,27 @@ const Experience = () => {
     town[mainStreetValue][treeZ - 10] = 17;
 
     // trees
+    for (let k = 0; k < TreeCnt; k++) {
+      let i = Math.floor(Math.random() * 100);
+      let j = Math.floor(Math.random() * 150);
+
+      if (town[i][j] === 0) {
+        town[i][j] = 18;
+      }
+    }
+
+    for (let k = 0; k < ForestTreeCnt; k++) {
+      let i = Math.floor(Math.random() * ForestHEIGHT);
+      let j =
+        Math.floor(Math.random() * ForestWIDTH) +
+        mainStreetStraightValue +
+        subStreetStraightValue +
+        10;
+
+      if (town[i][j] === 0) {
+        town[i][j] = 18;
+      }
+    }
 
     return town;
   };
@@ -1008,10 +1032,6 @@ const Experience = () => {
     setTown(generateTown());
   }, []);
 
-  useEffect(() => {
-    console.log(town);
-  }, [town]);
-
   return (
     <>
       <Frame />
@@ -1019,7 +1039,6 @@ const Experience = () => {
       <Snow />
       <Star />
       <Moon />
-
       {town.map((row, rowIndex) => (
         <>
           {row.map((cell, cellIndex) => {

@@ -5,7 +5,6 @@ import { currentMusic } from "../recoil/currentMusic";
 import { playState } from "../recoil/playState";
 import { useEffect, useRef, useState } from "react";
 import musicAPI from "../music";
-import { TbMusicShare } from "react-icons/tb";
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {

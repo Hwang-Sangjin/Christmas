@@ -6,9 +6,8 @@ import * as THREE from "three";
 const Tree1 = ({ xPos, zPos, cellIndex }) => {
   const mesh = useRef();
   const { nodes, scene, materials } = useGLTF("./Tree/tree.glb");
-
-  const size = Math.random() * 2 + 2;
-  const rotation = -Math.random() * 2.0 - 0.5;
+  const [size, setSize] = useState(Math.random() * 2 + 2);
+  const [rotation, setRotation] = useState(-Math.random() * 2.0 - 0.5);
 
   // Load all textures
   const bakedTexture = useTexture("./Tree/tree.jpg");
@@ -26,7 +25,7 @@ const Tree1 = ({ xPos, zPos, cellIndex }) => {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(0, 0, zPos - 25 - cellIndex * 0.3);
+        mesh.current.position.set(100, 0, zPos + 25 - cellIndex * 0.3);
       }
     }
   });

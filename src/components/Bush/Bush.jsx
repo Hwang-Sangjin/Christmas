@@ -80,7 +80,7 @@ const Bush = ({ xPos, zPos, cellIndex, rowIndex }) => {
       );
 
       if (mesh.current.position.x < -100) {
-        mesh.current.position.set(0, 0.5, zPos - 25 - cellIndex * 0.3);
+        mesh.current.position.set(100, 0, zPos + 25 - cellIndex * 0.3);
       }
     }
 
@@ -93,7 +93,7 @@ const Bush = ({ xPos, zPos, cellIndex, rowIndex }) => {
       scale={1}
       ref={mesh}
       rotation={[-Math.PI * 0.5, 0, 0]}
-      position={[xPos - 100, 0.5, zPos - 50]}
+      position={[xPos - 100, 0, zPos - 50]}
     >
       <boxGeometry args={[1, 1, 1, 64, 64, 64]} />
       <shaderMaterial

@@ -18,7 +18,6 @@ export default function FiberContainer() {
     <>
       <Loader />
       <Canvas camera={{ position: [-100, 20, 50], fov: 35 }} shadows>
-        <Stats />
         <Suspense fallback={null}>
           <Experience />
           <Environment preset="sunset" backgroundBlurriness={0.1} />
